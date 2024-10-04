@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 3.6.0)
 project(imgui)   
 
     #looking for  files
-    file(GLOB SOURCE_FILES "*.cpp" "*.h")
+    file(GLOB SOURCE_FILES "*.cpp" "*.h"  "backends/imgui_impl_dx12.h" "backends/imgui_impl_dx12.cpp")
 
-    file(GLOB HEADER_FILES  "*.h")
+    file(GLOB HEADER_FILES  "*.h" "backends/imgui_impl_dx12.h")
 
     include_directories(${CMAKE_CURRENT_SOURCE_DIR} )
 
@@ -20,6 +20,8 @@ project(imgui)
 
     #adding the executable
     add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES} ${HEADER_FILES})
+
+	target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 	if(APPLE)
 	elseif(UNIX)
